@@ -1,0 +1,18 @@
+close all;
+clear all;
+fs=1000; 
+T=1/fs; 
+N=512; 
+n=0:1:512-1; 
+t=(0:1:N-1)*T; 
+xn=2*sin(2*pi*100/fs*n); 
+t=(0:1:N-1)*T;   
+w=flattopwin(N); 
+xn=xn(:); 
+xn1=xn.*w; 
+ws=sum(w); 
+Xk = fft(xn1);
+Xk = Xk(1:length(Xk)/2+1);
+Xk = Xk.*(1/ws);
+Xk(2:end-1) = Xk(2:end-1)*2;
+plot(abs(Xk));
